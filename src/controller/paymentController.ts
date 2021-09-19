@@ -1,10 +1,17 @@
-import { createPayment, getPaymentById } from "@db/sqlMappingfunction/payment.sql";
+import { payment } from './../model/payment';
+import { createPayment, getPaymentById, getXpubIndex } from "@db/sqlMappingfunction/payment.sql";
+import { getAddress } from "@src/bitcoinAddress/function/getAddress";
+import { getXpub } from "@src/db/sqlMappingfunction/user.sql";
 import { Request, Response } from "express";
 
 export async function generatePayment(req: Request, res: Response) {
  try {
-    const {userId}  = req.params;
-    const address = "";
+    const {userId}  = req.body;
+    const xpub = await getXpub(userId);
+    const index = await getXpubIndex(userId);
+    const address = getAddress(xpub,index);
+
+    if(address == "") throw new Error("Address를 만드는데 실패했습니다.");
 
     const payment = await createPayment(userId, address);
     

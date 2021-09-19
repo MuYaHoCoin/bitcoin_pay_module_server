@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 
 export async function createUser(req: Request, res: Response) {
     try {
-        console.dir(req.body);
         const {userName, xpub} = req.body   ;
         const user = await generateUser(userName,xpub);
 
