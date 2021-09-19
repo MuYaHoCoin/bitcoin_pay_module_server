@@ -1,5 +1,8 @@
+import { executeQuery } from './src/db/client';
 import http from 'http'
 import app from "./app";
+import { getXpub } from '@src/db/sqlMappingfunction/user.sql';
+import { createPayment } from '@src/db/sqlMappingfunction/payment.sql';
 
 class Server {
     public server: http.Server;
