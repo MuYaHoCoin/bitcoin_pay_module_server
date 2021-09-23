@@ -1,4 +1,4 @@
-import { generatePayment, getPaymentRegistered } from "@src/controller/paymentController";
+import { addTxid, generatePayment, getPaymentRegistered } from "@src/controller/paymentController";
 import { createUser } from "@src/controller/userController";
 import { Router } from "express";
 
@@ -10,6 +10,6 @@ router.post('/user/create',createUser);
 
 //paymentRouter
 router.post('/payment/create',generatePayment)
-router.get('/payment/paymentId/:paymentId',getPaymentRegistered);
+router.put('/payment/addTxid',addTxid)
 
 export default router;

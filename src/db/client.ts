@@ -1,10 +1,12 @@
 import mysql, { QueryFunction } from 'mysql'
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const client = mysql.createConnection({
-    host: 'localhost',
-    user: 'bitcoin_payment_module',
-    password: '1234',
-    database: 'payment_schema'
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
 });
 
 export function executeQuery(query: string):Promise<any>{

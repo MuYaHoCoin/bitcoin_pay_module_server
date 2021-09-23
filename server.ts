@@ -3,6 +3,8 @@ import http from 'http'
 import app from "./app";
 import { getXpub } from '@src/db/sqlMappingfunction/user.sql';
 import { createPayment } from '@src/db/sqlMappingfunction/payment.sql';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 class Server {
     public server: http.Server;
@@ -10,7 +12,7 @@ class Server {
 
     constructor() {
         this.server = http.createServer(app);
-        this.port = 3000;
+        this.port = process.env.PORT ? parseInt(process.env.PORT) : -1;
         this.listen();
     }
 
